@@ -19,7 +19,7 @@ The **Makhai Rep Grind Tracker** is a streamlined, real-time Elite Dangerous com
 
 ## 🐾 Created By
 
-- 👨‍🚀 **CMDR polecatspeaks** — Elite Dangerous Commander & Developer  
+- 👨‍🚀 **CMDR Zee N Ranger** — Elite Dangerous Commander & Developer  
 - 💬 **Jenna** — AI assistant with a penchant for sarcasm, tactical foresight, and blue UI design  
 - 🐕‍🦺 **Ranger** — loyal mission security & morale enforcement  
 - 🐕 **Clara** — senior logistics officer, bone acquisition unit
