@@ -28,6 +28,9 @@ The **Makhai Rep Grind Tracker** is a streamlined, real-time Elite Dangerous com
 
 ## 🛠️ Getting Started
 
+📚 [Setup Instructions](docs/setup.md)
+
+## TL;DR
 1. Download the latest release from [GitHub Releases](https://github.com/polecatspeaks/mrgt/releases)
 2. Run the app and input your INARA API Key + Commander name on first launch
 3. Profit. (Literally.)
