@@ -203,7 +203,7 @@
  [],
  False,
  False,
- 1747836846,
+ 1747842405,
  [('runw',
    '/usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
    'EXECUTABLE')],
