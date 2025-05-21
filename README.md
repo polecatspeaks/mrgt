@@ -28,6 +28,11 @@ The **Makhai Rep Grind Tracker** is a streamlined, real-time Elite Dangerous com
 
 ## 🛠️ Getting Started
 
+### 📥 Download
+
+[Download MRGT_Installer.exe](https://github.com/polecatspeaks/mrgt/releases/latest/download/MRGT_Installer.exe)
+
+
 📚 [Setup Instructions](docs/setup.md)
 
 ## TL;DR
