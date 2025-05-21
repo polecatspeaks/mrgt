@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['mission_tracker_v090.py'],
+    ['mission_tracker_v091_gui.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -35,11 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['mrgt_icon.icns'],
-)
-app = BUNDLE(
-    exe,
-    name='MRGT.app',
-    icon='mrgt_icon.icns',
-    bundle_identifier=None,
+    icon=['mrgt_icon.ico'],
 )

@@ -9,6 +9,9 @@ LicenseFile=LICENSE.txt
 Compression=lzma
 SolidCompression=yes
 
+[Tasks]
+Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"
+
 [Files]
 Source: "dist\\MRGT.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
@@ -17,7 +20,3 @@ Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 [Icons]
 Name: "{group}\\MRGT"; Filename: "{app}\\MRGT.exe"
 Name: "{commondesktop}\\MRGT"; Filename: "{app}\\MRGT.exe"; Tasks: desktopicon
-
-[Run]
-Filename: "{app}\\MRGT.exe"; Description: "Launch MRGT"; Flags: nowait postinstall skipifsilent
-

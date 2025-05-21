@@ -1,36 +1,30 @@
-# Final version of mission_tracker.py (aka MRGT main executable)
-# This script includes GUI, Inara + EDDB integration, config handling, and theming.
-
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, simpledialog, messagebox
 import requests
 import json
 import os
+import urllib.request
+import sys
 
 CONFIG_DIR = "C:\\MRGT\\config"
 CONFIG_FILE = os.path.join(CONFIG_DIR, "mrgt_config.json")
 
-
-import urllib.request
-
-def check_for_updates(local_version="0.90"):
-    try:
-        with urllib.request.urlopen("https://raw.githubusercontent.com/polecatspeaks/mrgt/main/version.json") as response:
-            data = json.loads(response.read())
-            latest_version = data["version"]
-            if latest_version != local_version:
-                print(f"⚠️  Update available: {latest_version} (You have: {local_version})")
-                print("🔗 Download it from:", data["download_url"])
-    except Exception as e:
-        print(f"Update check failed: {e}")
 def ensure_config():
     if not os.path.exists(CONFIG_DIR):
         os.makedirs(CONFIG_DIR)
     if not os.path.exists(CONFIG_FILE):
-        api_key = input("Enter your INARA API Key: ").strip()
-        cmdr_name = input("Enter your Commander Name: ").strip()
+        root = tk.Tk()
+        root.withdraw()
+        api_key = simpledialog.askstring("INARA API Key", "Enter your INARA API Key:")
+        cmdr_name = simpledialog.askstring("Commander Name", "Enter your Commander Name:")
+        if not api_key or not cmdr_name:
+            messagebox.showerror("Missing Info", "API Key and Commander Name are required.")
+            sys.exit(1)
         with open(CONFIG_FILE, "w") as f:
-            json.dump({ "INARA_API_KEY": api_key, "INARA_CMDR_NAME": cmdr_name }, f)
+            json.dump({
+                "INARA_API_KEY": api_key.strip(),
+                "INARA_CMDR_NAME": cmdr_name.strip()
+            }, f)
 
 def load_config():
     with open(CONFIG_FILE, "r") as f:
@@ -70,6 +64,7 @@ class MissionTrackerApp(tk.Tk):
         self.set_theme()
         self.config = load_config()
         self.create_widgets()
+        self.check_for_updates()
         self.fetch_inara_data()
 
     def set_theme(self):
@@ -135,7 +130,7 @@ class MissionTrackerApp(tk.Tk):
             payload = {
                 "header": {
                     "appName": "MRGT",
-                    "appVersion": "1.0",
+                    "appVersion": "0.91",
                     "isDeveloped": True,
                     "APIkey": self.config['INARA_API_KEY'],
                     "commanderName": self.config['INARA_CMDR_NAME']
@@ -172,8 +167,18 @@ class MissionTrackerApp(tk.Tk):
         except Exception as e:
             print("Error accessing EDDB API:", e)
 
+    def check_for_updates(self, local_version="0.91"):
+        try:
+            with urllib.request.urlopen("https://raw.githubusercontent.com/polecatspeaks/mrgt/main/version.json") as response:
+                data = json.loads(response.read())
+                latest_version = data["version"]
+                if latest_version != local_version:
+                    print(f"⚠️  Update available: {latest_version} (You have: {local_version})")
+                    print("🔗 Download it from:", data["download_url"])
+        except Exception as e:
+            print(f"Update check failed: {e}")
+
 if __name__ == '__main__':
-    check_for_updates()
     ensure_config()
     app = MissionTrackerApp()
     app.mainloop()
